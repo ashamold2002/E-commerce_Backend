@@ -16,7 +16,7 @@ const ordersRoutes = require('./routes/orders');
 const allowedOrigins = [
   'http://localhost:3000',
   'https://ashamold2002.github.io',
-  'https://ashamold2002.github.io/Ecommerce-Demo/'
+  'https://ashamold2002.github.io/Ecommerce-Demo'
 ];
 
 
