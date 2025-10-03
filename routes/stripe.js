@@ -24,15 +24,17 @@ router.post('/create-checkout-session', async (req, res) => {
       })
     );
 
-    // create Stripe checkout session
-    const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
-      line_items,
-      mode: 'payment',
-      success_url: `${process.env.FRONTEND_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.FRONTEND_URL}/cart`,
-      customer_email: customerEmail,
-    });
+   const frontendUrl = process.env.FRONTEND_URL.replace(/\/$/, ''); // remove trailing slash
+
+const session = await stripe.checkout.sessions.create({
+  payment_method_types: ['card'],
+  line_items,
+  mode: 'payment',
+  success_url: `${frontendUrl}/success?session_id={CHECKOUT_SESSION_ID}`,
+  cancel_url: `${frontendUrl}/cart`,
+  customer_email: customerEmail,
+});
+
 
     // 🔑 Important: send session URL for new Stripe integration
     res.json({ url: session.url });
