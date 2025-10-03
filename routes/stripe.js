@@ -24,8 +24,10 @@ router.post('/create-checkout-session', async (req, res) => {
       })
     );
 
-   const frontendUrl = process.env.FRONTEND_URL.replace(/\/$/, ''); // remove trailing slash
-
+const frontendUrl = process.env.FRONTEND_URL?.replace(/\/$/, '');
+if (!frontendUrl) {
+  throw new Error("FRONTEND_URL not set in environment");
+}
 const session = await stripe.checkout.sessions.create({
   payment_method_types: ['card'],
   line_items,
