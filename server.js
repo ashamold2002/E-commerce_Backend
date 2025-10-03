@@ -15,8 +15,10 @@ const ordersRoutes = require('./routes/orders');
 // Remove trailing slash from FRONTEND_URL in .env
 const allowedOrigins = [
   'http://localhost:3000',
-  process.env.FRONTEND_URL // e.g., GitHub Pages frontend
+  'https://ashamold2002.github.io',
+  'https://ashamold2002.github.io/Ecommerce-Demo/'
 ];
+
 
 app.use(cors({
   origin: function(origin, callback) {
