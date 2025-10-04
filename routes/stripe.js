@@ -24,10 +24,8 @@ router.post('/create-checkout-session', async (req, res) => {
       })
     );
 
-const frontendUrl = process.env.FRONTEND_URL?.replace(/\/$/, '');
-if (!frontendUrl) {
-  throw new Error("FRONTEND_URL not set in environment");
-}
+const frontendUrl = "https://ashamold2002.github.io/Ecommerce-Demo";
+
 const session = await stripe.checkout.sessions.create({
   payment_method_types: ['card'],
   line_items,
